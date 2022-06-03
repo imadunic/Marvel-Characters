@@ -2,9 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { getAllCharacters } from "./api/MarvelAPI";
-import CharacterContainer from "./components/characterContainer/CharacterContainer";
-import SearchBar from "./components/searchBar/SearchBar";
-import Pagination from "./components/Pagination/Pagination";
+import CharacterContainer from "../components/characterContainer/CharacterContainer";
+import SearchBar from "../components/searchBar/SearchBar";
+import Pagination from "../components/Pagination/Pagination";
 
 export default function Home({ characters }) {
   return (
