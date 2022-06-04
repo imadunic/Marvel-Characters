@@ -6,12 +6,29 @@ var marvel = api.createClient({
 });
 
 export const getAllCharacters = async () => {
-  const response = await marvel.characters
-    .findNameStartsWith("Qu")
+  let offset = 0;
+  let response = {};
+
+  response = await marvel.characters
+    .findAll(100, offset)
     .then((data) => data)
     .fail((err) => null);
 
-  if (response == null) return [];
+  let characters = [...response.data];
+  const numOfCharacters = response.meta.total;
+  console.log("Number of characters:", numOfCharacters);
 
-  return response.data;
+  offset += 100;
+  while (offset <= numOfCharacters) {
+    response = await marvel.characters
+      .findAll(100, offset)
+      .then((data) => data)
+      .fail((err) => null);
+
+    offset += 100;
+    if (response && response.data)
+      characters = [...characters, ...response.data];
+  }
+
+  return characters;
 };
