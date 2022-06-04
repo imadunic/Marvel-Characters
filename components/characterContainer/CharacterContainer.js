@@ -1,8 +1,9 @@
 import CharacterCard from "../characterCard/CharacterCard";
+import styles from "./CharacterContainer.module.css";
 
 const CharacterContainer = ({ characters }) => {
   return (
-    <div>
+    <div className={styles.characterContainer}>
       {characters.map((character) => (
         <CharacterCard key={character.id} character={character} />
       ))}

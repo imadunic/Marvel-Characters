@@ -1,0 +1,22 @@
+.cardWrapper{
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: min-content
+}
+
+.imageContainer{
+    width: 9rem;
+    height: 11rem;
+    position: relative;
+
+}
+
+.characterName{
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
