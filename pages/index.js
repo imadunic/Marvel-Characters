@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { getAllCharacters } from "./api/MarvelAPI";
+import { queryCharacters } from "../lib/queryCharacters";
 import CharacterContainer from "../components/characterContainer/CharacterContainer";
 import SearchBar from "../components/searchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
@@ -9,8 +10,16 @@ import { useState, useEffect } from "react";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
+  const [shownCharacters, setShownChracters] = useState(characters); // Ovo poslije pretvorit u favorites
 
-  useEffect(() => {}, [query]);
+  useEffect(() => {
+    if (query == "") {
+      // Prikazi favorite
+      setShownChracters(characters);
+    }
+
+    setShownChracters(queryCharacters(query, characters));
+  }, [query]);
 
   const handleQueryChange = (newQuery) => {
     setQuery(newQuery);
@@ -21,8 +30,8 @@ export default function Home({ characters }) {
     <main>
       <p>Hello! I am Header!</p>
       <SearchBar setCharacterQuery={handleQueryChange} />
-      <CharacterContainer characters={characters} />
-      <Pagination numOfResults={characters.length} />
+      <CharacterContainer characters={shownCharacters} />
+      <Pagination numOfResults={shownCharacters.length} />
       <p>Hello! I am Footer!</p>
     </main>
   );
