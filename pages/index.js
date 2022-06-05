@@ -1,22 +1,32 @@
-import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { getAllCharacters } from "./api/MarvelAPI";
 import { queryCharacters } from "../lib/queryCharacters";
+import { selectCharactersToShow } from "../lib/selectCharactersToShow";
 import CharacterContainer from "../components/characterContainer/CharacterContainer";
 import SearchBar from "../components/searchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
 import { useState, useEffect } from "react";
+import { PAGE_SIZE } from "../constants";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
-  const [shownCharacters, setShownChracters] = useState(characters); // Ovo poslije pretvorit u favorites
+  const [queriedCharecters, setQueriedCharacters] = useState(characters); // Ovo poslije pretvorit u favorites
+  const [shownCharacters, setShownChracters] = useState([]);
+
+  useEffect(() => {
+    // Initial render
+    setShownChracters(selectCharactersToShow(0, characters));
+  }, []);
 
   useEffect(() => {
     if (query == "") {
       // Prikazi favorite
-      setShownChracters(characters);
-    } else setShownChracters(queryCharacters(query, characters));
+      setShownChracters(selectCharactersToShow(0, characters));
+    } else {
+      let queryResults = queryCharacters(query, characters);
+      setQueriedCharacters(queryResults);
+      setShownChracters(selectCharactersToShow(0, queryResults));
+    }
   }, [query]);
 
   const handleQueryChange = (newQuery) => {
@@ -25,7 +35,8 @@ export default function Home({ characters }) {
   };
 
   const handlePageChange = (newPageNumber) => {
-    const offset = (newPageNumber - 1) * 20;
+    let offset = (newPageNumber - 1) * PAGE_SIZE;
+    setShownChracters(selectCharactersToShow(offset, queriedCharecters));
     console.log(newPageNumber);
   };
 
@@ -34,10 +45,14 @@ export default function Home({ characters }) {
       <p>Hello! I am Header!</p>
       <SearchBar setCharacterQuery={handleQueryChange} />
       <CharacterContainer characters={shownCharacters} />
-      <Pagination
-        numOfResults={shownCharacters.length}
-        handlePageChange={handlePageChange}
-      />
+      {queriedCharecters.length ? (
+        <Pagination
+          numOfResults={queriedCharecters.length}
+          handlePageChange={handlePageChange}
+        />
+      ) : (
+        <p>There are no results for your query.</p>
+      )}
       <p>Hello! I am Footer!</p>
     </main>
   );
