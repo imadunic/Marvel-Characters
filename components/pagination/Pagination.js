@@ -2,9 +2,14 @@ import { useState } from "react";
 import styles from "./Pagination.module.css";
 import { PAGE_SIZE } from "../../constants/index.js";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { useEffect } from "react";
 
 const Pagination = ({ numOfResults, handlePageChange }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [numOfResults]);
 
   const totalPages = Math.ceil(numOfResults / PAGE_SIZE);
 
