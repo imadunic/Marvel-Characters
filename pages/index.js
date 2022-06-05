@@ -16,9 +16,7 @@ export default function Home({ characters }) {
     if (query == "") {
       // Prikazi favorite
       setShownChracters(characters);
-    }
-
-    setShownChracters(queryCharacters(query, characters));
+    } else setShownChracters(queryCharacters(query, characters));
   }, [query]);
 
   const handleQueryChange = (newQuery) => {
@@ -26,12 +24,20 @@ export default function Home({ characters }) {
     console.log(newQuery);
   };
 
+  const handlePageChange = (newPageNumber) => {
+    const offset = (newPageNumber - 1) * 20;
+    console.log(newPageNumber);
+  };
+
   return (
     <main>
       <p>Hello! I am Header!</p>
       <SearchBar setCharacterQuery={handleQueryChange} />
       <CharacterContainer characters={shownCharacters} />
-      <Pagination numOfResults={shownCharacters.length} />
+      <Pagination
+        numOfResults={shownCharacters.length}
+        handlePageChange={handlePageChange}
+      />
       <p>Hello! I am Footer!</p>
     </main>
   );
