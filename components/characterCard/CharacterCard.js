@@ -1,26 +1,30 @@
 import Image from "next/image";
 import styles from "./CharacterCard.module.css";
-import { FaRegBookmark } from "react-icons/fa";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+import { useState } from "react";
 
 const CharacterCard = ({ character, favoriteFlag }) => {
+  const [favorite, setFavorite] = useState(favoriteFlag);
+
   let imageURL =
     character.thumbnail.path +
     "/portrait_incredible." +
     character.thumbnail.extension;
 
   const handleBookmarkClick = () => {
-    favoriteFlag = !favoriteFlag;
     let favorites = JSON.parse(localStorage.getItem("favorites"));
     if (!favorites) favorites = [];
 
-    // Add/remove from array of favorites
-    if (favoriteFlag) favorites = [...favorites, character.id];
+    // If user adds the character to the favorites
+    if (!favorite) favorites = [...favorites, character.id];
     else {
+      // If user removes the character from the favorites
       let index = favorites.indexOf(character.id);
       if (index > -1) favorites.splice(index, 1); // 2nd parameter means remove one item only
     }
 
     localStorage.setItem("favorites", JSON.stringify(favorites));
+    setFavorite(!favorite);
   };
 
   return (
@@ -36,10 +40,20 @@ const CharacterCard = ({ character, favoriteFlag }) => {
 
       <div>
         <p className={styles.characterName}>{character.name}</p>
-        <FaRegBookmark
-          onClick={handleBookmarkClick}
-          className={"bookmarkIcon"}
-        />
+        {!favorite && (
+          <FaRegBookmark
+            onClick={handleBookmarkClick}
+            size={40}
+            className={styles.bookmarkIcon}
+          />
+        )}
+        {favorite && (
+          <FaBookmark
+            onClick={handleBookmarkClick}
+            size={40}
+            className={styles.bookmarkIcon}
+          />
+        )}
       </div>
     </div>
   );
