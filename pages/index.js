@@ -2,6 +2,7 @@ import styles from "../styles/Home.module.css";
 import { getAllCharacters } from "./api/MarvelAPI";
 import { queryCharacters } from "../lib/queryCharacters";
 import { selectCharactersToShow } from "../lib/selectCharactersToShow";
+import { listFavorites } from "../lib/listFavorites";
 import CharacterContainer from "../components/characterContainer/CharacterContainer";
 import SearchBar from "../components/searchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
@@ -10,18 +11,22 @@ import { PAGE_SIZE } from "../constants";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
-  const [queriedCharecters, setQueriedCharacters] = useState(characters); // Ovo poslije pretvorit u favorites
+  const [queriedCharecters, setQueriedCharacters] = useState([]);
   const [shownCharacters, setShownChracters] = useState([]);
 
   useEffect(() => {
     // Initial render
-    setShownChracters(selectCharactersToShow(0, characters));
+    let favoriteCharacters = listFavorites(characters);
+    setQueriedCharacters(favoriteCharacters);
+    setShownChracters(selectCharactersToShow(0, favoriteCharacters));
   }, []);
 
   useEffect(() => {
     if (query == "") {
-      // Prikazi favorite
-      setShownChracters(selectCharactersToShow(0, characters));
+      // If query is empty, list favorites
+      let favoriteCharacters = listFavorites(characters);
+      setQueriedCharacters(favoriteCharacters);
+      setShownChracters(selectCharactersToShow(0, favoriteCharacters));
     } else {
       let queryResults = queryCharacters(query, characters);
       setQueriedCharacters(queryResults);
