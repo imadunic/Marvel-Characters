@@ -3,11 +3,12 @@ import { getAllCharacters } from "./api/MarvelAPI";
 import { queryCharacters } from "../lib/queryCharacters";
 import { selectCharactersToShow } from "../lib/selectCharactersToShow";
 import { listFavorites } from "../lib/listFavorites";
+import { useState, useEffect } from "react";
+import { PAGE_SIZE } from "../constants";
 import CharacterContainer from "../components/characterContainer/CharacterContainer";
 import SearchBar from "../components/searchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
-import { useState, useEffect } from "react";
-import { PAGE_SIZE } from "../constants";
+import Header from "../components/header/Header";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
@@ -47,7 +48,7 @@ export default function Home({ characters }) {
 
   return (
     <main>
-      <p>Hello! I am Header!</p>
+      <Header />
       <SearchBar setCharacterQuery={handleQueryChange} />
       <CharacterContainer characters={shownCharacters} />
       {queriedCharecters.length ? (

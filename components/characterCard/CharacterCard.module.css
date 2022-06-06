@@ -12,15 +12,20 @@
     width: 12rem;
     height: 15rem;
     position: relative;
-
 }
+
+.infoContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
 
 .characterName{
     font-weight: 600;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    font-size: 1rem;
 }
 
 .bookmarkIcon{
-    margin-left: 5rem;
 }

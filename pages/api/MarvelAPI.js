@@ -8,6 +8,7 @@ var marvel = api.createClient({
 export const getAllCharacters = async () => {
   let offset = 0;
   let response = {};
+  //let testFlag = 0;
 
   response = await marvel.characters
     .findAll(100, offset)
@@ -26,6 +27,7 @@ export const getAllCharacters = async () => {
       .fail((err) => null);
 
     offset += 100;
+    console.log(offset);
     if (response && response.data)
       characters = [...characters, ...response.data];
   }
