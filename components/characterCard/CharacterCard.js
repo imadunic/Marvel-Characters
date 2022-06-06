@@ -38,24 +38,14 @@ const CharacterCard = ({ character, favoriteFlag }) => {
         />
       </div>
 
-      <div className={styles.infoContainer}>
+      <div className={styles.infoContainer} onClick={handleBookmarkClick}>
         <div className={styles.characterName}>
           {character.name.toUpperCase()}
         </div>
         {!favorite && (
-          <FaRegBookmark
-            onClick={handleBookmarkClick}
-            size={40}
-            className={styles.bookmarkIcon}
-          />
+          <FaRegBookmark size={40} className={styles.bookmarkIcon} />
         )}
-        {favorite && (
-          <FaBookmark
-            onClick={handleBookmarkClick}
-            size={40}
-            className={styles.bookmarkIcon}
-          />
-        )}
+        {favorite && <FaBookmark size={40} className={styles.bookmarkIcon} />}
       </div>
     </div>
   );

@@ -26,6 +26,9 @@
     margin-top: 1.5rem;
 }
 
+.infoContainer:hover{
+    cursor: pointer;
+}
 
 .characterName{
     font-weight: 600;
