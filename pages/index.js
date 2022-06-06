@@ -1,4 +1,3 @@
-import styles from "../styles/Home.module.css";
 import { getAllCharacters } from "./api/MarvelAPI";
 import { queryCharacters } from "../lib/queryCharacters";
 import { selectCharactersToShow } from "../lib/selectCharactersToShow";
@@ -9,6 +8,7 @@ import CharacterContainer from "../components/characterContainer/CharacterContai
 import SearchBar from "../components/searchBar/SearchBar";
 import Pagination from "../components/Pagination/Pagination";
 import Header from "../components/header/Header";
+import Footer from "../components/footer/Footer";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
@@ -59,7 +59,7 @@ export default function Home({ characters }) {
       ) : (
         <p>There are no results for your query.</p>
       )}
-      <p>Hello! I am Footer!</p>
+      <Footer />
     </main>
   );
 }
