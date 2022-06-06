@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BsSearch } from "react-icons/bs";
+import styles from "./SearchBar.module.css";
 
 const SearchBar = ({ setCharacterQuery }) => {
   const [query, setQuery] = useState("");
@@ -9,14 +10,14 @@ const SearchBar = ({ setCharacterQuery }) => {
   }, [query]);
 
   return (
-    <div className="flex border-2 rounded-2xl md:h-12 h-10 border-black self-end md:w-auto w-2/3 sm:text-base text-sm">
-      <BsSearch />
+    <div className={styles.container}>
+      <BsSearch size={30} />
       <input
         type="text"
-        placeholder="Search for products"
+        placeholder="Search"
         onChange={(event) => setQuery(event.target.value)}
         value={query}
-        className="px-4 py-2 md:w-80 w-full rounded-2xl rounded-l-none border-0"
+        className={styles.queryInput}
       />
     </div>
   );
