@@ -10,7 +10,7 @@
 
 .imageContainer{
     width: 12rem;
-    height: 15rem;
+    height: 21rem;
     position: relative;
 }
 
@@ -27,5 +27,16 @@
     font-size: 1rem;
 }
 
-.bookmarkIcon{
+@media (min-width: 1440px){
+    .imageContainer{
+        width: 16rem;
+        height: 28rem;
+    }
+}
+
+@media (max-width: 640px){
+    .imageContainer{
+        width: 16rem;
+        height: 24rem;
+    }
 }

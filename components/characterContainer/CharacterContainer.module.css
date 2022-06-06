@@ -1,7 +1,8 @@
 .characterContainer{
     display: grid;
-    width: full;
     justify-items: center;
+    width: 75%;
+    margin: auto;
     grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
