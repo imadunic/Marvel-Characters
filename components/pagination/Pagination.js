@@ -24,43 +24,31 @@ const Pagination = ({ numOfResults, handlePageChange }) => {
   };
 
   return (
-    <div className="flex place-content-center mb-12  mt-12">
+    <div className={styles.paginationContainer}>
       <span>
         {prevDisabled && (
-          <span className="text-center p-1 m-2 sm:text-5xl text-3xl ">
-            <FaArrowLeft className="mr-3 opacity-60" />
+          <span>
+            <FaArrowLeft className={styles.arrowDisabled} />
           </span>
         )}
         {!prevDisabled && (
-          <a
-            className="text-center p-1 m-2 sm:text-5xl text-3xl"
-            aria-label="Left arrow"
-          >
-            <FaArrowLeft
-              className="mr-3"
-              onClick={() => pageChange(currentPage - 1)}
-            />
+          <a aria-label="Left arrow">
+            <FaArrowLeft onClick={() => pageChange(currentPage - 1)} />
           </a>
         )}
       </span>
-      <span className="self-center sm:text-xl text-lg">
+      <span className={styles.paginationText}>
         Page {currentPage} of {totalPages}
       </span>
       <span>
         {nextDisabled && (
-          <span className="text-center p-1 m-2 sm:text-5xl text-3xl ">
-            <FaArrowRight className="ml-3 opacity-60" />
+          <span>
+            <FaArrowRight className={styles.arrowDisabled} />
           </span>
         )}
         {!nextDisabled && (
-          <a
-            className="text-center  p-1 m-2 sm:text-5xl text-4xl "
-            aria-label="Right arrow"
-          >
-            <FaArrowRight
-              className="ml-3"
-              onClick={() => pageChange(currentPage + 1)}
-            />
+          <a aria-label="Right arrow">
+            <FaArrowRight onClick={() => pageChange(currentPage + 1)} />
           </a>
         )}
       </span>

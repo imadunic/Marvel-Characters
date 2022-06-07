@@ -1,0 +1,13 @@
+.paginationContainer{
+    margin:40px auto;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.paginationText{
+    margin: 10px;
+}
+
+.arrowDisabled{
+    opacity: 0.6;
+}
