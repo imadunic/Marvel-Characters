@@ -57,7 +57,7 @@ export default function Home({ characters }) {
           handlePageChange={handlePageChange}
         />
       ) : (
-        <p>There are no results.</p>
+        <div className="noResultsInfo">There are no results.</div>
       )}
       <Footer />
     </div>
