@@ -47,7 +47,7 @@ export default function Home({ characters }) {
   };
 
   return (
-    <main>
+    <div className="mainConatiner">
       <Header />
       <SearchBar setCharacterQuery={handleQueryChange} />
       <CharacterContainer characters={shownCharacters} />
@@ -57,10 +57,10 @@ export default function Home({ characters }) {
           handlePageChange={handlePageChange}
         />
       ) : (
-        <p>There are no results for your query.</p>
+        <p>There are no results.</p>
       )}
       <Footer />
-    </main>
+    </div>
   );
 }
 
