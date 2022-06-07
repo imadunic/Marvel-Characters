@@ -25,5 +25,11 @@ a {
 .noResultsInfo{
   margin: 50px auto;
   font-size: 1.5rem;
-  font-weight: 300;
+  font-weight: 400;
+}
+
+.resultNumber{
+  margin: 40px auto;
+  font-size: 1.75rem;
+  font-weight: 400;
 }

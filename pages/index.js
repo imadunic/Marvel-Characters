@@ -50,6 +50,11 @@ export default function Home({ characters }) {
     <div className="mainConatiner">
       <Header />
       <SearchBar setCharacterQuery={handleQueryChange} />
+      {queriedCharecters.length && (
+        <div className="resultNumber">
+          CHARACTERS({queriedCharecters.length})
+        </div>
+      )}
       <CharacterContainer characters={shownCharacters} />
       {queriedCharecters.length ? (
         <Pagination
