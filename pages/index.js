@@ -12,7 +12,7 @@ import Footer from "../components/footer/Footer";
 
 export default function Home({ characters }) {
   const [query, setQuery] = useState("");
-  const [queriedCharecters, setQueriedCharacters] = useState([]);
+  const [queriedCharacters, setQueriedCharacters] = useState([]);
   const [shownCharacters, setShownChracters] = useState([]);
 
   useEffect(() => {
@@ -42,23 +42,25 @@ export default function Home({ characters }) {
 
   const handlePageChange = (newPageNumber) => {
     let offset = (newPageNumber - 1) * PAGE_SIZE;
-    setShownChracters(selectCharactersToShow(offset, queriedCharecters));
+    setShownChracters(selectCharactersToShow(offset, queriedCharacters));
     console.log(newPageNumber);
   };
 
   return (
-    <div className="mainConatiner">
+    <div className="mainContainer">
       <Header />
       <SearchBar setCharacterQuery={handleQueryChange} />
-      {queriedCharecters.length && (
+      {queriedCharacters.length ? (
         <div className="resultNumber">
-          CHARACTERS({queriedCharecters.length})
+          CHARACTERS({queriedCharacters.length})
         </div>
+      ) : (
+        ""
       )}
       <CharacterContainer characters={shownCharacters} />
-      {queriedCharecters.length ? (
+      {queriedCharacters.length ? (
         <Pagination
-          numOfResults={queriedCharecters.length}
+          numOfResults={queriedCharacters.length}
           handlePageChange={handlePageChange}
         />
       ) : (
