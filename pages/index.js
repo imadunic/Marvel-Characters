@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { PAGE_SIZE } from "../constants";
 import CharacterContainer from "../components/characterContainer/CharacterContainer";
 import SearchBar from "../components/searchBar/SearchBar";
-import Pagination from "../components/Pagination/Pagination";
+import Pagination from "../components/pagination/Pagination";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
